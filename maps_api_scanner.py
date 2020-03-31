@@ -2,6 +2,7 @@ import requests
 import warnings 
 import json
 
+vulnerable_apis = []
 warnings.filterwarnings("ignore")
 apikey = raw_input("Please enter the Google Maps API key you wanted to test: ")
 url = "https://maps.googleapis.com/maps/api/staticmap?center=45%2C10&zoom=7&size=400x400&key="+apikey 
@@ -9,6 +10,7 @@ response = requests.get(url, verify=False)
 if response.status_code == 200:
 	print "API key is vulnerable for Staticmap API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Staticmap")
 else:
 	print "API key is not vulnerable for Staticmap API."
 	print "Reason: "+ response.content
@@ -18,6 +20,7 @@ response = requests.get(url, verify=False)
 if response.status_code == 200:
 	print "API key is vulnerable for Streetview API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Streetview")
 else:
 	print "API key is not vulnerable for Streetview API."
 	print "Reason: "+ response.content
@@ -27,6 +30,7 @@ response = requests.get(url, verify=False)
 if response.status_code == 200:
 	print "API key is vulnerable for Embed API! Here is the PoC HTML code which can be used directly via browser:"
 	print "<iframe width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\""+url+"\" allowfullscreen></iframe>"
+	vulnerable_apis.append("Embed")
 else:
 	print "API key is not vulnerable for Embed API."
 	print "Reason: "+ response.content
@@ -36,6 +40,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error_message") < 0:
 	print "API key is vulnerable for Directions API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Directions")
 else:
 	print "API key is not vulnerable for Directions API."
 	print "Reason: "+ response.json()["error_message"]
@@ -45,6 +50,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error_message") < 0:
 	print "API key is vulnerable for Geocode API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Geocode")
 else:
 	print "API key is not vulnerable for Geocode API."
 	print "Reason: "+ response.json()["error_message"]
@@ -54,6 +60,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error_message") < 0:
 	print "API key is vulnerable for Distance Matrix API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Distance Matrix")
 else:
 	print "API key is not vulnerable for Distance Matrix API."
 	print "Reason: "+ response.json()["error_message"]
@@ -63,6 +70,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error_message") < 0:
 	print "API key is vulnerable for Find Place From Text API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Find Place From Text")
 else:
 	print "API key is not vulnerable for Find Place From Text API."
 	print "Reason: "+ response.json()["error_message"]
@@ -72,6 +80,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error_message") < 0:
 	print "API key is vulnerable for Autocomplete API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Autocomplete")
 else:
 	print "API key is not vulnerable for Autocomplete API."
 	print "Reason: "+ response.json()["error_message"]
@@ -81,6 +90,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error_message") < 0:
 	print "API key is vulnerable for Elevation API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Elevation")
 else:
 	print "API key is not vulnerable for Elevation API."
 	print "Reason: "+ response.json()["error_message"]
@@ -90,6 +100,7 @@ response = requests.get(url, verify=False)
 if response.text.find("errorMessage") < 0:
 	print "API key is vulnerable for Timezone API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Timezone")
 else:
 	print "API key is not vulnerable for Timezone API."
 	print "Reason: "+ response.json()["errorMessage"]
@@ -99,6 +110,7 @@ response = requests.get(url, verify=False)
 if response.text.find("error") < 0:
 	print "API key is vulnerable for Roads API! Here is the PoC link which can be used directly via browser:"
 	print url
+	vulnerable_apis.append("Roads")
 else:
 	print "API key is not vulnerable for Roads API."
 	print "Reason: "+ response.json()["error"]["message"]
@@ -109,8 +121,12 @@ response = requests.post(url, data=postdata, verify=False)
 if response.text.find("error") < 0:
 	print "API key is vulnerable for Geolocation API! Here is the PoC curl command which can be used from terminal:"
 	print "curl -i -s -k  -X $'POST' -H $'Host: www.googleapis.com' -H $'Content-Length: 22' --data-binary $'{\"considerIp\": \"true\"}' $'"+url+"'"
+	vulnerable_apis.append("Geolocation")
 else:
 	print "API key is not vulnerable for Geolocation API."
 	print "Reason: "+ response.json()["error"]["message"]
 
 print "Because JavaScript API needs manual confirmation from a web browser, tests are not conducted for that API. If the script didn't found any vulnerable endpoints above, to be sure, manual checks can be conducted on this API. For that, go to https://developers.google.com/maps/documentation/javascript/tutorial URL, copy HTML code and change 'key' parameter with the one wanted to test. If loaded without errors on the browser, then it is vulnerable for JavaScript API."
+print "Results:"
+for i in range (len(vulnerable_apis)):
+    print "- " + vulnerable_apis[i]
