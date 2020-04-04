@@ -8,7 +8,7 @@ apikey = raw_input("Please enter the Google Maps API key you wanted to test: ")
 url = "https://maps.googleapis.com/maps/api/staticmap?center=45%2C10&zoom=7&size=400x400&key="+apikey 
 response = requests.get(url, verify=False)
 if response.status_code == 200:
-	print (" API key is \033[1;31;40m vulnerable \033[0m for Staticmap API! Here is the PoC link which can be used directly via browser:")
+	print ("API key is \033[1;31;40m vulnerable \033[0m for Staticmap API! Here is the PoC link which can be used directly via browser:")
 	print url
 	vulnerable_apis.append("Staticmap")
 else:
