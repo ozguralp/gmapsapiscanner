@@ -22,7 +22,7 @@ else:
 	print("API key is not vulnerable for Streetview API.")
 	print("Reason: "+ str(response.content))
 
-url = "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJyX7muQw8tokR2Vf5WBBk1iQ&key="+apikey 
+url = "https://www.google.com/maps/embed/v1/search?q=record+stores+in+Seattle&key="+apikey 
 response = requests.get(url, verify=False)
 if response.status_code == 200:
 	print("API key is \033[1;31;40m vulnerable \033[0m for Embed API! Here is the PoC HTML code which can be used directly via browser:")
