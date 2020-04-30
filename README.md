@@ -29,4 +29,5 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 
 ***Notes:***
 - Because JavaScript API needs manual confirmation from a web browser directly, checks are not conducted for that API. If the script didn't found any vulnerable endpoints above or JavaScript API also wanted to be tested, manual checks can be conducted on this API within going to https://developers.google.com/maps/documentation/javascript/tutorial URL & copying HTML code and changing 'key' parameter with the one wanted to test. After opening file on the browser, if loaded without errors, then the API key is also vulnerable for JavaScript API.
+- For Staticmap, Streetview and Embed API's, if used from another domain instead of just testing from browser; whether referer checks are enabled or not, script will return it as vulnerable. If you cannot reproduce the vulnerability via browser, please read the "Blog Post #2" for more information & a better understanding about what is going on. 
 - If you find any Google Maps API's which are not mentioned in this document/script, ping me via Twitter with details so I can also add them.
