@@ -2,6 +2,7 @@
 Used for determining whether a leaked/found Google Maps API Key is vulnerable to unauthorized access by other applications or not.  
 
 ***Blog Post:*** https://medium.com/bugbountywriteup/unauthorized-google-maps-api-key-usage-cases-and-why-you-need-to-care-1ccb28bf21e
+***Blog Post (Advanced):*** https://medium.com/bugbountywriteup/google-maps-api-not-the-key-bugs-that-i-found-over-the-years-781840fc82aa
 
 ***Usage:***
 - Download `maps_api_scanner.py` file and run as: `python maps_api_scanner.py`.
