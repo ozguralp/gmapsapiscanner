@@ -43,7 +43,10 @@ if response.status_code == 200:
 	vulnerable_apis.append("Embed (Advanced-Paid)")
 else:
 	print "API key is not vulnerable for Embed (Advanced-Paid) API."
-	print "Reason: "+ response.content.split("\"")[77]
+	if len(response.content.split("\"")) < 77:
+		print "Reason: "+ response.content
+	else:
+		print "Reason: "+ response.content.split("\"")[77]
 
 url = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key="+apikey
 response = requests.get(url, verify=False)
