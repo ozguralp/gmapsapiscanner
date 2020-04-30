@@ -25,15 +25,25 @@ else:
 	print "API key is not vulnerable for Streetview API."
 	print "Reason: "+ response.content
 
+url = "https://www.google.com/maps/embed/v1/place?q=Seattle&key="+apikey 
+response = requests.get(url, verify=False)
+if response.status_code == 200:
+	print "API key is \033[1;31;40m vulnerable \033[0m for Embed (Basic-Free) API! Here is the PoC HTML code which can be used directly via browser:"
+	print "<iframe width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\""+url+"\" allowfullscreen></iframe>"
+	vulnerable_apis.append("Embed (Basic-Free)")
+else:
+	print "API key is not vulnerable for (Basic-Free) Embed API."
+	print "Reason: "+ response.content
+
 url = "https://www.google.com/maps/embed/v1/search?q=record+stores+in+Seattle&key="+apikey 
 response = requests.get(url, verify=False)
 if response.status_code == 200:
-	print "API key is \033[1;31;40m vulnerable \033[0m for Embed API! Here is the PoC HTML code which can be used directly via browser:"
+	print "API key is \033[1;31;40m vulnerable \033[0m for Embed (Advanced-Paid) API! Here is the PoC HTML code which can be used directly via browser:"
 	print "<iframe width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" src=\""+url+"\" allowfullscreen></iframe>"
-	vulnerable_apis.append("Embed")
+	vulnerable_apis.append("Embed (Advanced-Paid)")
 else:
-	print "API key is not vulnerable for Embed API."
-	print "Reason: "+ response.content
+	print "API key is not vulnerable for Embed (Advanced-Paid) API."
+	print "Reason: "+ response.content.split("\"")[77]
 
 url = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key="+apikey
 response = requests.get(url, verify=False)
