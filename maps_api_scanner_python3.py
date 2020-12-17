@@ -240,6 +240,7 @@ def scan_gmaps(apikey):
 	if jsapi == "Y" or jsapi == "y":
 		f = open("jsapi_test.html","w+")
 		f.write('<!DOCTYPE html><html><head><script src="https://maps.googleapis.com/maps/api/js?key='+apikey+'&callback=initMap&libraries=&v=weekly" defer></script><style type="text/css">#map{height:100%;}html,body{height:100%;margin:0;padding:0;}</style><script>let map;function initMap(){map=new google.maps.Map(document.getElementById("map"),{center:{lat:-34.397,lng:150.644},zoom:8,});}</script></head><body><div id="map"></div></body></html>')
+		f.close()
 		print("jsapi_test.html file is created for manual confirmation. Open it at your browser and observe whether the map is successfully loaded or not.") 
 		print("If you see 'Sorry! Something went wrong.' error on the page, it means that API key is not allowed to be used at JavaScript API.")
 		result = input("Press enter again for deletion of jsapi_test.html file automatically after manual confirmation is conducted.")
