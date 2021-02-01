@@ -34,6 +34,7 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 - Places Photo API
 - Playable Locations API
 - FCM API
+- Custom Search API
 
 ***Semi-Auto Checked APIs:***
 - JavaScript API
