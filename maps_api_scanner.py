@@ -6,15 +6,15 @@ import os
 
 def scan_gmaps(apikey):
 	vulnerable_apis = []
-	url = "https://www.googleapis.com/customsearch/v1?key={}&cx=017576662512468239146:omuauf_lfve&q=lectures".format(apikey)
+	url = "https://www.googleapis.com/customsearch/v1?cx=017576662512468239146:omuauf_lfve&q=lectures&key="+apikey
 	response = requests.get(url, verify=False)
-	if response.status_code == 200:
-		print "API key is \033[1;31;40m vulnerable \033[0m for Custom search API! Here is the PoC link which can be used directly via browser:"
+	if response.text.find("errors") < 0:
+		print "API key is \033[1;31;40m vulnerable \033[0m for Custom Search API! Here is the PoC link which can be used directly via browser:"
 		print url
 		vulnerable_apis.append("customsearch 			|| $5 per 1000 requests")
 	else:
-		print "API key is not vulnerable for Staticmap API."
-		print "Reason: "+ response.content
+		print "API key is not vulnerable for Custom Search API."
+		print "Reason: "+ response.json()["errors"]["message"]
 
 	url = "https://maps.googleapis.com/maps/api/staticmap?center=45%2C10&zoom=7&size=400x400&key="+apikey
 	response = requests.get(url, verify=False)
