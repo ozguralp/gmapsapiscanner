@@ -14,7 +14,7 @@ def scan_gmaps(apikey):
 		vulnerable_apis.append("customsearch 			|| $5 per 1000 requests")
 	else:
 		print("API key is not vulnerable for Custom Search API.")
-		print("Reason: "+ str(response.json()["errors"]["message"]))
+		print("Reason: "+ str(response.json()["error"]["errors"][0]["message"]))
 
 	url = "https://maps.googleapis.com/maps/api/staticmap?center=45%2C10&zoom=7&size=400x400&key="+apikey
 	response = requests.get(url, verify=False)
