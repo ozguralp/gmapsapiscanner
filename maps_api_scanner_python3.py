@@ -8,7 +8,7 @@ def scan_gmaps(apikey):
 	vulnerable_apis = []
 	url = "https://www.googleapis.com/customsearch/v1?cx=017576662512468239146:omuauf_lfve&q=lectures&key="+apikey
 	response = requests.get(url, verify=False)
-	if response.text.find("errors") < 0
+	if response.text.find("errors") < 0:
 		print("API key is \033[1;31;40m vulnerable \033[0m for Custom Search API! Here is the PoC link which can be used directly via browser:")
 		print(url)
 		vulnerable_apis.append("customsearch 			|| $5 per 1000 requests")
