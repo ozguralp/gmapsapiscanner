@@ -15,8 +15,8 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 ***Checked APIs:***
 - Staticmap API
 - Streetview API
-- Embed (Basic-Free) API
-- Embed (Advanced-Paid) API
+- <s>Embed (Basic-Free) API</s> (No longer checked since it is completely free.)
+- <s>Embed (Advanced-Paid) API</s> (No longer checked since it is completely free.)
 - Directions API
 - Geocode API
 - Distance Matrix API
