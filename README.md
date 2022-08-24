@@ -44,3 +44,11 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 - For Staticmap, Streetview and Embed API's, if used from another domain instead of just testing from browser; whether referer checks are enabled or not on the server-side for the key, script still could return it as vulnerable due to a server-side vulnerability. If you cannot reproduce the vulnerability via browser while the script says so, please read the ***Blog Post #2*** for more information & a better understanding about what is going on. 
 - If you find any Google Maps API's which are not mentioned in this document/script, create an issue with details so I can also add them.
 - Special thanks to [Yatin](https://twitter.com/ysirpaul) for his contributions on both discovery of additional API's & cost information!
+
+
+# Docker
+To run this script in a Dockerized Alpine Linux environment, use the following commands:
+```
+docker build -t google_maps_api_scanner .
+docker run --rm -v $(pwd):/opt/html -i docker.io/library/google_maps_api_scanner <api key>
+```
