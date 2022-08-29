@@ -5,6 +5,8 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 
 ***[Blog Post #2 - Google Maps API (Not the Key) Bugs That I Found Over the Years](https://medium.com/bugbountywriteup/google-maps-api-not-the-key-bugs-that-i-found-over-the-years-781840fc82aa)***
 
+***Please note that most of the bug bounty platforms marking this vulnerability type as informational/low impact. So please make sure that the platform or program is accepting this kind of issues before reporting.***
+
 
 ***Usage:***
 - Download `maps_api_scanner.py` file and run as: `python maps_api_scanner.py` & paste API key wanted to test when asked. 
