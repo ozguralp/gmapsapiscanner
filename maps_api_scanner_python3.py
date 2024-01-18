@@ -190,7 +190,8 @@ def scan_gmaps(apikey):
 	else:
 		print("API key is not vulnerable for Places Photo API.")
 		print("Reason: Verbose responses are not enabled for this API, cannot determine the reason.")
-
+	"""
+ 	# https://developers.google.com/maps/documentation/gaming/overview_locations says API is deprecated
 	url = "https://playablelocations.googleapis.com/v3:samplePlayableLocations?key="+apikey
 	postdata = {'area_filter':{'s2_cell_id':7715420662885515264},'criteria':[{'gameObjectType':1,'filter':{'maxLocationCount':4,'includedTypes':['food_and_drink']},'fields_to_return': {'paths': ['name']}},{'gameObjectType':2,'filter':{'maxLocationCount':4},'fields_to_return': {'paths': ['types', 'snapped_point']}}]}
 	response = requests.post(url, data=postdata, verify=False)
@@ -201,6 +202,7 @@ def scan_gmaps(apikey):
 	else:
 		print("API key is not vulnerable for Playable Locations API.")
 		print("Reason: "+ response.json()["error"]["message"])
+  	"""
 
 	url = "https://fcm.googleapis.com/fcm/send"
 	postdata = "{'registration_ids':['ABC']}"
