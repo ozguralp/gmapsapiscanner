@@ -9,10 +9,9 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 
 
 ***Usage:***
-- Download `maps_api_scanner.py` file and run as: `python maps_api_scanner.py` & paste API key wanted to test when asked. 
+- Download `maps_api_scanner3.py` file and run as: `python3 maps_api_scanner.py` & paste API key wanted to test when asked. 
 - Script will return `API key is vulnerable for XXX API!` message and the PoC link/code if determines any unauthorized access within this API key within any API's.
-- Now it supports also api key as argument such as `python maps_api_scanner.py --api-key API_KEY`. 
-- If you want to use `python3`, download `maps_api_scanner_python3.py` file and run as: `python3 maps_api_scanner_python3.py`.
+- Now it supports also api key as argument such as `python3 maps_api_scanner3.py --api-key API_KEY`. 
 
 ***Checked APIs:***
 - Staticmap API
@@ -34,7 +33,7 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 - Nearby Search-Places API
 - Text Search-Places API
 - Places Photo API
-- Playable Locations API
+- <s>Playable Locations API</s> (API is deprecated.)
 - FCM API
 - Custom Search API
 
