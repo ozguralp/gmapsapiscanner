@@ -1,5 +1,5 @@
 [project]
-name = "maps-api-scanner"
+name = "gmapsapiscanner"
 version = "1.0.0"
 description = "Google Maps API Scanner - Tests Google Maps API keys for vulnerabilities"
 authors = [
