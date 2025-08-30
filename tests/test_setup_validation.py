@@ -111,7 +111,7 @@ class TestSetupValidation:
 @pytest.mark.unit
 def test_pytest_runs_from_project_root():
     """Test that pytest can be run from project root."""
-    assert Path.cwd().name in ["workspace", "tests", "maps-api-scanner"]
+    assert Path.cwd().name in ["workspace", "tests", "maps-api-scanner", "gmapsapiscanner"]
 
 
 @pytest.mark.unit

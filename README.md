@@ -1,4 +1,5 @@
 # Google Maps API Scanner
+
 Used for determining whether a leaked/found Google Maps API Key is vulnerable to unauthorized access by other applications or not.  
 
 ***[Blog Post #1 - Unauthorized Google Maps API Key Usage Cases, and Why You Need to Care](https://medium.com/bugbountywriteup/unauthorized-google-maps-api-key-usage-cases-and-why-you-need-to-care-1ccb28bf21e)***
@@ -7,11 +8,15 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 
 ***Please note that most of the bug bounty platforms marking this vulnerability type as informational/low impact. So please make sure that the platform or program is accepting this kind of issues before reporting.***
 
-
 ***Usage:***
-- Download `maps_api_scanner.py` file and run as: `python3 maps_api_scanner.py` & paste API key wanted to test when asked. (Python2 is no longer supported.)
+
+- Either download the Python file directly or install it with **pip** or **pipx**.
 - Script will return `API key is vulnerable for XXX API!` message and the PoC link/code if determines any unauthorized access within this API key within any API's.
-- Now it supports also api key as argument such as `python3 maps_api_scanner.py --api-key API_KEY`. 
+
+```
+pipx install git+https://github.com/ozguralp/gmapsapiscanner
+gmapapiscanner --api-key KEY
+```
 
 ***Checked APIs:***
 - Staticmap API
@@ -47,7 +52,7 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 - Special thanks to [Yatin](https://twitter.com/ysirpaul) for his contributions on both discovery of additional API's & cost information!
 
 
-# Docker
+## Docker
 To run this script in a Dockerized Alpine Linux environment, use the following commands:
 ```
 docker build -t google_maps_api_scanner .

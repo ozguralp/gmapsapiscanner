@@ -221,19 +221,24 @@ def scan_gmaps(apikey):
 	print("Operation is over. Thanks for using G-Maps API Scanner!")
 	return True
 
-warnings.filterwarnings("ignore")
-if len(sys.argv) > 1:
-	if sys.argv[1] == "--api-key" or sys.argv[1] == "-a":
-		if len(sys.argv) > 2:
-			scan_gmaps(sys.argv[2])
-		else:
-			print("Missing api key, aborting.")
+def main() -> None:
+	warnings.filterwarnings("ignore")
+	if len(sys.argv) > 1:
+		if sys.argv[1] == "--api-key" or sys.argv[1] == "-a":
+			if len(sys.argv) > 2:
+				scan_gmaps(sys.argv[2])
+			else:
+				print("Missing api key, aborting.")
+				print("Either use --api-key as argument such \"python maps_api_scanner.py --api-key KEY\" or directly run script as \"python maps_api_scanner.py\" and supply API key via input.")
+		elif sys.argv[1] == "--help" or sys.argv[1] == "-h":
 			print("Either use --api-key as argument such \"python maps_api_scanner.py --api-key KEY\" or directly run script as \"python maps_api_scanner.py\" and supply API key via input.")
-	elif sys.argv[1] == "--help" or sys.argv[1] == "-h":
-		print("Either use --api-key as argument such \"python maps_api_scanner.py --api-key KEY\" or directly run script as \"python maps_api_scanner.py\" and supply API key via input.")
+		else:
+			print("Invalid arguments, aborting.")
+			print("Either use --api-key as argument such \"python maps_api_scanner.py --api-key KEY\" or directly run script as \"python maps_api_scanner.py\" and supply API key via input.")
 	else:
-		print("Invalid arguments, aborting.")
-		print("Either use --api-key as argument such \"python maps_api_scanner.py --api-key KEY\" or directly run script as \"python maps_api_scanner.py\" and supply API key via input.")
-else:
-	apikey = input("Please enter the Google Maps API key you wanted to test: ")
-	scan_gmaps(apikey)
+		apikey = input("Please enter the Google Maps API key you wanted to test: ")
+		scan_gmaps(apikey)
+
+if __name__ == "__main__":
+    main()
+
