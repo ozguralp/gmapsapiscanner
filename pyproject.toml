@@ -16,7 +16,7 @@ dependencies = [
 repository = "https://github.com/ozguralp/gmapsapiscanner"
 
 [project.scripts]
-gmapsapiscanner = "maps_api_scanner:main"
+maps_api_scanner = "maps_api_scanner"
 
 [project.optional-dependencies]
 dev = [
@@ -91,5 +91,5 @@ directory = "htmlcov"
 output = "coverage.xml"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
