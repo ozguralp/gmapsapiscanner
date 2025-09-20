@@ -15,7 +15,7 @@ Used for determining whether a leaked/found Google Maps API Key is vulnerable to
 
 ```
 pipx install git+https://github.com/ozguralp/gmapsapiscanner
-gmapapiscanner --api-key KEY
+gmapsapiscanner --api-key KEY
 ```
 
 ***Checked APIs:***
