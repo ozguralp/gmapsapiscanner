@@ -3,7 +3,7 @@ name = "gmapsapiscanner"
 version = "1.0.0"
 description = "Google Maps API Scanner - Tests Google Maps API keys for vulnerabilities"
 authors = [
-    { name = "Ozgur Alp", email = "you@example.com" }
+    { name = "Ozgur Alp", email = "info@ozguralp.com" }
 ]
 readme = "README.md"
 license = { text = "MIT" }
