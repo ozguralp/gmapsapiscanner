@@ -27,10 +27,10 @@ def scan_gmaps(apikey):
 		print(url)
 		vulnerable_apis.append("Streetview 			|| $7 per 1000 requests")
 	elif b"PNG" in response.content:
-		print("API key is not vulnerable for Staticmap API.")
+		print("API key is not vulnerable for Streetview API.")
 		print("Reason: Manually check the "+url+" to view the reason.")
 	else:
-		print("API key is not vulnerable for Staticmap API.")
+		print("API key is not vulnerable for Streetview API.")
 		print("Reason: "+ str(response.content))
 
 	url = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key="+apikey
