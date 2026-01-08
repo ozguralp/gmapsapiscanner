@@ -1,29 +1,27 @@
-[project]
+[tool.poetry]
 name = "gmapsapiscanner"
 version = "1.0.0"
 description = "Google Maps API Scanner - Tests Google Maps API keys for vulnerabilities"
-authors = [
-    { name = "Ozgur Alp", email = "info@ozguralp.com" }
-]
+authors = ["Ozgur Alp <info@ozguralp.com>"]
 readme = "README.md"
-license = { text = "MIT" }
-requires-python = ">=3.9,<4.0"
-dependencies = [
-    "requests>=2.32.5"
-]
 
-[project.urls]
-repository = "https://github.com/ozguralp/gmapsapiscanner"
+packages = [{include = "maps_api_scanner.py"}]
 
-[project.scripts]
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+requests = ">=2.32.5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0.0"
+pytest-cov = ">=4.1.0"
+pytest-mock = ">=3.12.0"
+
+[tool.poetry.scripts]
 gmapsapiscanner = "maps_api_scanner:main"
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=8.0.0",
-    "pytest-cov>=4.1.0",
-    "pytest-mock>=3.12.0"
-]
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 minversion = "8.0"
@@ -89,7 +87,3 @@ directory = "htmlcov"
 
 [tool.coverage.xml]
 output = "coverage.xml"
-
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
