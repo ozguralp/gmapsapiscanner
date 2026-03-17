@@ -314,29 +314,30 @@ def scan_gmaps(apikey, skip_jsapi=False):
 		if not reason_found:
 			print("Reason: " + _error_message(response, ("error",)) if response.content else ("HTTP %s" % response.status_code))
 	
-	# Gemini Files API (GET)
-    url = "https://generativelanguage.googleapis.com/v1beta/files?key="+apikey
-    response = requests.get(url, **_REQUEST_KWARGS)
-    if response.status_code == 200:
-        print("API key is \033[1;31;40mvulnerable\033[0m for Gemini Files API! Here is the PoC link:")
-        print(url)
-        vulnerable_apis.append("Gemini (Files)           || Data Leak Risk https://trufflesecurity.com/blog/google-api-keys-werent-secrets-but-then-gemini-changed-the-rules")
-    else:
-        print("API key is not vulnerable for Gemini Files API.")
-        print("Reason: "+ _error_message(response, ("error",)))
+		# Gemini Files API (GET)
+		url = "https://generativelanguage.googleapis.com/v1beta/files?key=" + apikey
+		response = requests.get(url, **_REQUEST_KWARGS)
 
-    # Gemini Cached Contents API (GET)
-    url = "https://generativelanguage.googleapis.com/v1beta/cachedContents?key="+apikey
-    response = requests.get(url, **_REQUEST_KWARGS)
-    if response.status_code == 200:
-        print("API key is \033[1;31;40mvulnerable\033[0m for Gemini Cached Contents API! Here is the PoC link:")
-        print(url)
-        vulnerable_apis.append("Gemini (Cache)           || Data Leak Risk")
-    else:
-        print("API key is not vulnerable for Gemini Cached Contents API.")
-        print("Reason: "+ _error_message(response, ("error",)))
-	
+		if response.status_code == 200:
+		    print("API key is \033[1;31;40mvulnerable\033[0m for Gemini Files API! Here is the PoC link:")
+		    print(url)
+		    vulnerable_apis.append("Gemini (Files)           || Data Leak Risk https://trufflesecurity.com/blog/google-api-keys-werent-secrets-but-then-gemini-changed-the-rules")
+		else:
+		    print("API key is not vulnerable for Gemini Files API.")
+		    print("Reason: " + _error_message(response, ("error",)))
 
+		# Gemini Cached Contents API (GET)
+		url = "https://generativelanguage.googleapis.com/v1beta/cachedContents?key=" + apikey
+		response = requests.get(url, **_REQUEST_KWARGS)
+
+		if response.status_code == 200:
+		    print("API key is \033[1;31;40mvulnerable\033[0m for Gemini Cached Contents API! Here is the PoC link:")
+		    print(url)
+		    vulnerable_apis.append("Gemini (Cache)           || Data Leak Risk")
+		else:
+		    print("API key is not vulnerable for Gemini Cached Contents API.")
+		    print("Reason: " + _error_message(response, ("error",)))
+		    
 	print("-------------------------------------------------------------")
 	print("  Results 			|| Cost Table/Reference to Exploit:")
 	print("-------------------------------------------------------------")
