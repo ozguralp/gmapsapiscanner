@@ -11,6 +11,12 @@ REQUEST_TIMEOUT = 15
 _REQUEST_KWARGS = {"verify": False, "timeout": REQUEST_TIMEOUT}
 
 
+def _configure_proxy(proxy_url):
+    """Add proxy settings to the shared request kwargs."""
+    if proxy_url:
+        _REQUEST_KWARGS["proxies"] = {"http": proxy_url, "https": proxy_url}
+
+
 def _error_message(response, keys=("error_message", "errorMessage")):
     """Safely extract error message from JSON response to avoid KeyError."""
     try:
@@ -37,7 +43,8 @@ def _error_message(response, keys=("error_message", "errorMessage")):
     return "Unknown error (status %s)" % getattr(response, "status_code", "?")
 
 
-def scan_gmaps(apikey, skip_jsapi=False):
+def scan_gmaps(apikey, skip_jsapi=False, proxy=None):
+	_configure_proxy(proxy)
 	vulnerable_apis = []
 	url = "https://maps.googleapis.com/maps/api/staticmap?center=45%2C10&zoom=7&size=400x400&key="+apikey 
 	response = requests.get(url, **_REQUEST_KWARGS)
@@ -368,10 +375,28 @@ def main() -> None:
 	skip_jsapi = "--no-jsapi" in args
 	if skip_jsapi:
 		args = [a for a in args if a != "--no-jsapi"]
+
+	# Extract --proxy / -p value
+	proxy = None
+	for flag in ("--proxy", "-p"):
+		if flag in args:
+			idx = args.index(flag)
+			if idx + 1 < len(args):
+				proxy = args[idx + 1]
+				args = args[:idx] + args[idx + 2:]
+			else:
+				print("Missing proxy URL after %s, aborting." % flag)
+				_print_usage()
+				return
+			break
+
+	if proxy:
+		print("Using proxy: " + proxy)
+
 	if len(args) > 0:
 		if args[0] == "--api-key" or args[0] == "-a":
 			if len(args) > 1:
-				scan_gmaps(args[1], skip_jsapi=skip_jsapi)
+				scan_gmaps(args[1], skip_jsapi=skip_jsapi, proxy=proxy)
 			else:
 				print("Missing api key, aborting.")
 				_print_usage()
@@ -382,13 +407,14 @@ def main() -> None:
 			_print_usage()
 	else:
 		apikey = input("Please enter the Google Maps API key you wanted to test: ")
-		scan_gmaps(apikey, skip_jsapi=skip_jsapi)
+		scan_gmaps(apikey, skip_jsapi=skip_jsapi, proxy=proxy)
 
 
 def _print_usage() -> None:
-	print("Usage: python maps_api_scanner.py [--api-key KEY] [--no-jsapi]")
-	print("       gmapsapiscanner [--api-key KEY] [--no-jsapi]")
+	print("Usage: python maps_api_scanner.py [--api-key KEY] [--proxy URL] [--no-jsapi]")
+	print("       gmapsapiscanner [--api-key KEY] [--proxy URL] [--no-jsapi]")
 	print("  --api-key, -a   API key to test (otherwise prompted for input)")
+	print("  --proxy, -p     HTTP/HTTPS/SOCKS proxy URL (e.g. http://127.0.0.1:8080)")
 	print("  --no-jsapi      Skip the interactive JavaScript API test (useful for CI/automation)")
 	print("  --help, -h      Show this message")
 
