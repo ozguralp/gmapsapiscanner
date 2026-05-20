@@ -8,8 +8,9 @@ readme = "README.md"
 packages = [{include = "maps_api_scanner.py"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = ">=3.10,<4.0"
 requests = ">=2.32.5"
+urllib3 = ">=2.7.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.0.0"
